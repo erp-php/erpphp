@@ -1,0 +1,28 @@
+# Composer
+vendor/*
+composer.lock
+
+# Local project configuration
+config/autoload/local.php
+config/autoload/*.local.php
+config/autoload/*.phpunit.php
+
+# Static files that we don't want to version
+data/cache/*
+data/logs/*
+data/file/*
+_reports
+
+# User stuff
+nbproject
+.buildpath
+.idea
+.project
+.settings
+
+# Mac crap
+.DS_Store
+
+# Other
+._*
+.~lock.*

@@ -1,0 +1,181 @@
+<?php echo $this->doctype(); ?>
+<html lang="pt_BR">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle("MyWedding") ?>
+        <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+        <?php echo $this->headMeta()->appendName('description', 'Site de Anuncios e Informações de Casamentos') ?>
+        <?php echo $this->headMeta()->appendName('author', 'Daniel Chaves') ?>
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/home/favicon.ico')) ?>
+        <?php echo $this->headlink(array('rel'=>'image_src', 'href'=> $this->basePath() . '/home/thumbnail.jpg')) ?>
+        <?php echo $this->headlink(array('rel'=>'stylesheet','type'=>'css','href'=>'http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'))
+                        ->prependStylesheet($this->basePath() . '/home/css/font-awesome.min.css')
+                        ->prependStylesheet($this->basePath() . '/home/css/m-styles.min.css')
+                        ->prependStylesheet($this->basePath() . '/home/css/bootstrap-lightbox.min.css')
+                        ->prependStylesheet($this->basePath() . '/home/css/style.css')
+                        ->prependStylesheet($this->basePath() . '/home/css/bootstrap-responsive.min.css')
+                        ->prependStylesheet($this->basePath() . '/home/css/bootstrap.min.css')
+         ?>
+
+
+        <?php echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                                      ->prependFile($this->basePath() . '/home/js/custom.js')
+                                      ->prependFile($this->basePath() . '/home/js/bootstrap-lightbox.min.js')
+                                      ->prependFile($this->basePath() . '/home/js/jquery.form.js')
+                                      ->prependFile($this->basePath() . '/home/js/jquery.stellar.js')
+                                      ->prependFile($this->basePath() . '/home/js/jquery.nicescroll.min.js')
+                                      ->prependFile($this->basePath() . '/home/js/jquery.easing-1.3.pack.js')
+                                      ->prependFile($this->basePath() . '/home/js/retina.js')
+                                      ->prependFile($this->basePath() . '/home/js/bootstrap.min.js')
+                                      ->prependFile('http://code.jquery.com/jquery-latest.js')
+       ?>
+
+     </head>
+     <body data-spy="scroll" data-target=".navbar" data-offset='64' onLoad="$.stellar();">
+         <div id="preloader">
+			<div id="status">&nbsp;</div>
+		</div>
+
+        <div class="navbar navbar-fixed-top" id="navigation">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a href="#intro" class="brand"><img src="<?php echo $this->basePath()?>/home/img/logo.png" alt=""></a>
+					<div class="nav-collapse collapse">
+						<ul class="nav pull-right">
+						<?php $menus = $this->homemenus();
+
+							  foreach($menus as $menu):
+						?>
+							<li><a href="<?php echo $menu->menuLink ?>"><?php echo $this->escapeHtml($menu->getMenuName())?></a></li>
+						<?php endforeach; ?>
+						    <li class="divider-vertical"></li>
+						    <?php $user = $this->session()->offsetGet('sysUserData');
+						      if(!$user):
+						    ?>
+						    <li class="dropdown"><a class="dropdown-toggle" href="#login-cliente" data-toggle="dropdown"><?php echo $this->escapeHtml("Entrar")?> <strong class="caret"></strong></a>
+						    <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+              				<form id="login" method="post" action="<?php echo $this->basePath().'/application/auth/login' ?>" class="form-horizontal well" role="form">
+							<?php  $loginForm = $this->userLogin(); ?>
+
+              				<div class="form-group">
+              				<div class="col-lg-12">
+              				<?php
+              				    $username = $loginForm->get('userName');
+              				    echo $this->formInput($username);
+              				?>
+             				</div>
+              				</div>
+
+              				<div class="form-group">
+              				<div class="col-lg-12">
+              				<?php
+              				    $password = $loginForm->get('password');
+              				    echo $this->formInput($password);
+              				?>
+
+              				</div>
+              				</div>
+
+              				<div class="form-group">
+              				<div class="col-lg-offset-2 col-lg-10">
+              				<?php
+              				    $submit = $loginForm->get('submit');
+              				    echo $this->formInput($submit);
+              				?>
+              				</div>
+              				</div>
+
+              				<div class="form-group">
+              				<a href="<?php echo $this->basePath() .'/application/auth/facebook' ?>" class="btn btn-primary  btn-block">Entrar com Facebook</a>
+              				</div>
+
+              				<div class="form-group">
+              				<a href="" class="btn btn-success  btn-block">Cadastre-se</a>
+              				</div>
+
+              				<div class="form-group">
+              				<a href="#">Esqueci minha senha!</a>
+              				</div>
+              				</form>
+            				</div>
+						    </li>
+						    <?php else: ?>
+						    <li class="dropdown"><a class="dropdown-toggle" href="#clientmenu" data-toggle="dropdown"><?php echo "Menu do Sistema"?> <strong class="caret"></strong></a>
+						    <ul class="dropdown-menu">
+						    <li> <a href="<?php echo $this->basePath() .'/application/auth/logout' ?>">Meu Cadastro</a></li>
+						    <li> <a href="<?php echo $this->basePath() .'/application/auth/logout' ?>">Meus Pagamentos</a></li>
+						    <li><a href="<?php echo $this->basePath() .'/application/auth/logout' ?>">Meus Site</a></li>
+						    <li class="divider-vertical"></li>
+						    <li> <a href="<?php echo $this->basePath() .'/application/auth/logout' ?>">Sair</a></li>
+						    </ul>
+						    </li>						    
+						    <?php endif; ?>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<?php echo $this->content; ?>
+
+
+        <section id="footer">
+			<div class="container">
+				<div class="row divide">
+	<!--logo and copyright-->
+					<div class="span3">
+						<a href="#intro" class="brand"><img src="<?php echo $this->basePath()?>/home/img/logo.png" alt=""></a>
+						<p>2013 © MyWedding.</p><br>
+						<p>MyWedding é um serviço <br> de <a href="http://www.cepheros.com.br" target="_blank">Cepheros</a></p><br>
+					</div>
+	<!--footer menu-->
+					<div class="span2 offset4">
+						<ul>
+							<li><h5>Menu</h5></li>
+							<?php foreach($menus as $menu): ?>
+							<li><a href="<?php echo $menu->menuLink ?>"><?php echo $this->escapeHtml($menu->getMenuName())?></a></li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+	<!--link to social networks-->
+					<div class="span2 offset1">
+						<ul>
+							<li><h5>Social</h5></li>
+							<li><a class="facebook" href="http://www.facebook.com/awerest" target="_blank">Facebook</a></li>
+							<li><a class="twitter" href="http://www.twitter.com/awerest" target="_blank">Twitter</a></li>
+							<li><a class="google" href="https://plus.google.com/u/0/104533843132286032110/posts" target="_blank">Google+</a></li>
+							<li><a class="instagram" href="http://www.instagram.com/awerest" target="_blank">Instagram</a></li>
+							<li><a class="pinterest" href="http://www.pinterest.com/awerest" target="_blank">Pinterest</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	<!--preloader-->
+		<script type="text/javascript">
+			$(window).load(function() {
+				$("#status").fadeOut();
+				$("#preloader").delay(350).fadeOut("slow");
+			})
+		</script>
+
+	<!--google analytics-->
+		<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43686267-1', 'nossoamordeunisso.com.br');
+  ga('send', 'pageview');
+
+</script>
+	</body>
+</html>
+

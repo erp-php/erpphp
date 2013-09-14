@@ -1,0 +1,24 @@
+{
+	"name" : "cepheros/zf2-doctrine",
+	"description" : "Skeleton Application for cepheros projects",
+	"authors" : [{
+			"name" : "Daniel Chaves",
+			"email" : "daniel@danielchaves.com.br",
+			"homepage" : "http://www.danielchaves.com.br",
+			"role" : "Owner"
+		}
+	],
+	"license" : [
+		"BSD-3-Clause"
+	],
+	"require" : {
+		"doctrine/doctrine-orm-module" : "master-dev",
+		"php" : ">=5.3.3",
+		"doctrine/orm" : ">=2.3",
+		"zendframework/zendframework" : "master-dev",
+		"zendframework/zend-developer-tools" : "master-dev",
+		"zendframework/zendservice-recaptcha": "*"
+		
+	},
+	"minimum-stability" : "dev"
+}
