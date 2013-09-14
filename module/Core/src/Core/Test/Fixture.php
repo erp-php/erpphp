@@ -3,8 +3,6 @@ namespace Core\Test;
 
 use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
-use Core\Db\TableGateway;
 
 /**
  * Classe pai dos fixtures
@@ -20,7 +18,7 @@ abstract class Fixture implements ServiceManagerAwareInterface
     protected $serviceManager;
 
     /**
-     * Entidade 
+     * Entidade
      * @var string
      */
     protected $entity;
@@ -51,15 +49,15 @@ abstract class Fixture implements ServiceManagerAwareInterface
 
     /**
      * Constrói o fixture de acordo com os parâmetros
-     * @param  array $data Parâmetros do fixture
-     * @return Entity       Objeto criado
+     * @param  array  $data Parâmetros do fixture
+     * @return Entity Objeto criado
      */
     public function build($data = null)
     {
         if (is_array($data)) {
             $this->data = array_merge($this->data, $data);
         }
-        
+
         $object = new $this->entity;
         $object->setData($this->data);
 

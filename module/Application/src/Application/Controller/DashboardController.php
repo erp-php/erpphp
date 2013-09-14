@@ -17,27 +17,19 @@ use Zend\View\Model\ViewModel;
  * @link       none
  */
 
-
 class DashboardController extends CoreController
 {
 
+    /**
+     * Index Controller
+     * (non-PHPdoc)
+     *
+     * @see    Zend\Mvc\Controller\AbstractActionController::indexAction()
+     * @return Zend\View\Model\ViewModel
+     */
+    public function indexAction()
+    {
 
-	/**
-	 * Index Controller
-	 * (non-PHPdoc)
-	 *
-	 * @see    Zend\Mvc\Controller\AbstractActionController::indexAction()
-	 * @return Zend\View\Model\ViewModel
-	 */
-	public function indexAction()
-	{
-
-		 
-
-	}
-
-
-
-
+    }
 
 }

@@ -1,14 +1,14 @@
 <?php
 
 return array(
-		'controllers' => array(
-				'invokables' => array(
-						'Application\Controller\Index' => 'Application\Controller\IndexController',
-						'Application\Controller\Dashboard' => 'Application\Controller\DashboardController',
-						'Application\Controller\Auth' => 'Application\Controller\AuthController'
+        'controllers' => array(
+                'invokables' => array(
+                        'Application\Controller\Index' => 'Application\Controller\IndexController',
+                        'Application\Controller\Dashboard' => 'Application\Controller\DashboardController',
+                        'Application\Controller\Auth' => 'Application\Controller\AuthController'
 
-				),
-		),
+                ),
+        ),
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -71,6 +71,6 @@ return array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
-     
+
     ),
 );

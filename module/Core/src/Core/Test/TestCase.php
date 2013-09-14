@@ -2,10 +2,7 @@
 
 namespace Core\Test;
 
-use Zend\Db\Adapter\Adapter;
-use Core\Db\TableGateway;
 use Zend\Mvc\Application;
-use Zend\Di\Di;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\Mvc\MvcEvent;
@@ -38,13 +35,13 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected $routes;
 
     /**
-     * Variável com as configurações 
+     * Variável com as configurações
      * @var array
      */
     protected $config;
 
     /**
-     * EntityManager  
+     * EntityManager
      * @var EntityManager
      */
     protected $entityManager = null;
@@ -67,7 +64,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             putenv("ENV=testing");
             $env = 'testing';
         }
-       
+
         putenv('PROJECT_ROOT=' . __DIR__ . '/../../../../../');
         parent::setup();
 
@@ -95,7 +92,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         foreach ($moduleManager->getLoadedModules() as $m) {
             $moduleConfig = $m->getConfig();
             $this->getModuleRoutes($moduleConfig);
-            
+
             $moduleName = explode('\\', get_class($m));
             $moduleName = $moduleName[0];
             //verifica se existe um arquivo de configuração específico no módulo para testes
@@ -133,11 +130,11 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             }
         }
     }
-    
+
     /**
      * Retorna uma instância de Service
      *
-     * @param  string $service
+     * @param  string  $service
      * @return Service
      */
     protected function getService($service)
@@ -148,7 +145,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * Retorna uma instância de Fixgure
      *
-     * @param  string $fixture
+     * @param  string  $fixture
      * @return Fixture
      */
     protected function getFixture($fixture)
@@ -174,12 +171,11 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
      */
     public function dropDatabase()
     {
-        
+
         $schemaTool = new \Doctrine\ORM\Tools\SchemaTool($this->entityManager);
         $classes = $this->entityManager->getMetadataFactory()->getAllMetadata();
         $schemaTool->dropSchema($classes);
-        
-        
+
     }
 
     /**
@@ -192,30 +188,28 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             return $this->entityManager;
         }
         $this->em = $this->serviceManager->get('Doctrine\ORM\EntityManager');
-        
+
         return $this->em;
     }
-    
+
     protected function createRoles()
     {
-        
+
         $rolenames = array(array('visitante',''),array('sysuser','visitante'),array('sysadmin','sysuser'));
-        foreach($rolenames as $rolename){
-           
+        foreach ($rolenames as $rolename) {
+
         $roles = new \Core\Entity\System\Roles();
         $roles->setRoleName($rolename[0]);
         $roles->setRoleParent($rolename[1]);
         $this->getEntityManager()->persist($roles);
         $this->getEntityManager()->flush();
-        
+
         }
-        
-        
-        
+
     }
-    
+
     protected function createResources()
     {
-        
+
     }
 }

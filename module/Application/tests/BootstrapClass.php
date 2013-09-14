@@ -1,9 +1,6 @@
 <?php
 namespace ApplicationTest;
 
-use Zend\ServiceManager\ServiceManager;
-use Zend\Mvc\Service\ServiceManagerConfig;
-use Zend\Db\Adapter\Adapter;
 use Zend\Loader\AutoloaderFactory;
 use Zend\Loader\StandardAutoloader;
 
@@ -44,8 +41,8 @@ class BootstrapClass
         );
         set_include_path(implode(PATH_SEPARATOR, $path));
 
-        require_once  'Zend/Loader/AutoloaderFactory.php';
-        require_once  'Zend/Loader/StandardAutoloader.php';
+        require_once 'Zend/Loader/AutoloaderFactory.php';
+        require_once 'Zend/Loader/StandardAutoloader.php';
 
         // setup autoloader
         AutoloaderFactory::factory(

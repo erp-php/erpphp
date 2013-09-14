@@ -7,9 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFactory;
 
-/** 
+/**
  * Users
- * 
+ *
  * @ORM\Entity
  * @ORM\Table(name="tblsystem_users")
  */

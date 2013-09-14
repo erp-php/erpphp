@@ -4,7 +4,6 @@ namespace Application\Controller;
 use Core\Controller\CoreController;
 use Zend\View\Model\ViewModel;
 
-
 /**
  * AuthController
  *
@@ -20,25 +19,22 @@ use Zend\View\Model\ViewModel;
 
 class AuthController extends CoreController
 {
-	public function indexAction()
-	{
-	    $view = new ViewModel();
-	    $view->setTerminal(true);
-	    	
-	    return $view; 
-		
-	}
-	
-	
-	public function authAction()
-	{
-		
-		
-		
-	}
-	
-	public function logoutAction()
-	{
-		
-	}
+    public function indexAction()
+    {
+        $view = new ViewModel();
+        $view->setTerminal(true);
+
+        return $view;
+
+    }
+
+    public function authAction()
+    {
+
+    }
+
+    public function logoutAction()
+    {
+
+    }
 }

@@ -1,4 +1,4 @@
 <?php
 return array(
-	'Application\Module'                                  => __DIR__ . '/Module.php',
+    'Application\Module'                                  => __DIR__ . '/Module.php',
 );

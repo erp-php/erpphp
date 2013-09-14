@@ -9,7 +9,6 @@
 
 namespace Application;
 
-use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
 class Module
@@ -21,34 +20,32 @@ class Module
         $moduleManager = $e->getApplication()->getServiceManager()->get('modulemanager');
         /** @var \Zend\EventManager\SharedEventManager $sharedEvents */
         $sharedEvents = $moduleManager->getEventManager()->getSharedManager();
- 
+
         //adiciona eventos ao módulo
         $sharedEvents->attach('Zend\Mvc\Controller\AbstractActionController', \Zend\Mvc\MvcEvent::EVENT_DISPATCH, array($this, 'mvcPreDispatch'), 100);
-    	
-        
+
     }
 
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
-    
+
     public function mvcPreDispatch($event)
     {
-    	$di = $event->getApplication()->getServiceManager();
-    	$routeMatch = $event->getRouteMatch();
-    	$moduleName = $routeMatch->getParam('module');
-    	$controllerName = $routeMatch->getParam('controller');
-    	$actionName = $routeMatch->getParam('action');
-    	
-    	$authService = $di->get('Core\Service\Auth\System');
-    	
-    	if(!$authService->authorize($moduleName,$controllerName,$actionName))
-    	{
-    		throw new \Exception('Você não tem autorização de acesso a este recurso');
-    	}
-    	
-    	return true;
+        $di = $event->getApplication()->getServiceManager();
+        $routeMatch = $event->getRouteMatch();
+        $moduleName = $routeMatch->getParam('module');
+        $controllerName = $routeMatch->getParam('controller');
+        $actionName = $routeMatch->getParam('action');
+
+        $authService = $di->get('Core\Service\Auth\System');
+
+        if (!$authService->authorize($moduleName,$controllerName,$actionName)) {
+            throw new \Exception('Você não tem autorização de acesso a este recurso');
+        }
+
+        return true;
     }
 
     public function getAutoloaderConfig()

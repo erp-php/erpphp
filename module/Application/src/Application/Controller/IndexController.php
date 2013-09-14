@@ -20,7 +20,6 @@ use Zend\View\Model\ViewModel;
 class IndexController extends CoreController
 {
 
-
     /**
      * Index Controller
      * (non-PHPdoc)
@@ -33,9 +32,5 @@ class IndexController extends CoreController
         return new ViewModel();
 
     }
-
-
-  
-
 
 }

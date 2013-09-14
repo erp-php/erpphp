@@ -6,11 +6,10 @@ use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
-use Zend\Stdlib\Hydrator\ClassMethods;
 
 abstract class CoreEntity implements InputFilterAwareInterface
 {
-	
+
     /**
      * @ORM\Column(type="datetime")
      * @var datetime
@@ -21,10 +20,10 @@ abstract class CoreEntity implements InputFilterAwareInterface
     {
         $this->$createdStamp = new DateTime();
     }
-    
+
     /**
      * Filtros
-     * 
+     *
      * @var InputFilter
      */
     protected $inputFilter = null;
@@ -38,8 +37,8 @@ abstract class CoreEntity implements InputFilterAwareInterface
     /**
      * Valida e atribui os valores dos campos da entidade
      *
-     * @param string $key   O nome do campo
-     * @param string $value O valor do campo
+     * @param  string $key   O nome do campo
+     * @param  string $value O valor do campo
      * @return void
      */
     public function __set($key, $value)
@@ -50,8 +49,8 @@ abstract class CoreEntity implements InputFilterAwareInterface
     /**
      * Retorna os dados da entidade
      *
-     * @param string $key O nome do campo
-     * @return mixed 
+     * @param  string $key O nome do campo
+     * @return mixed
      */
     public function __get($key)
     {
@@ -61,7 +60,7 @@ abstract class CoreEntity implements InputFilterAwareInterface
     /**
      * Atribui os valores para os atributos da entidade de acordo com um array de dados
      *
-     * @param array $data Os dados a serem salvos
+     * @param  array $data Os dados a serem salvos
      * @return void
      */
     public function setData($data)
@@ -92,13 +91,14 @@ abstract class CoreEntity implements InputFilterAwareInterface
             }
 
         }
+
         return $filtered;
     }
 
     /**
      * Obrigatório para uso pelo TableGateway
      *
-     * @param array $data Os dados da entidade
+     * @param  array $data Os dados da entidade
      * @return void
      */
     public function exchangeArray($data)
@@ -109,7 +109,7 @@ abstract class CoreEntity implements InputFilterAwareInterface
     /**
      * Obrigatório para uso pelo TableGateway
      *
-     * @param array $data
+     * @param  array $data
      * @return void
      */
     public function getArrayCopy()
@@ -120,12 +120,13 @@ abstract class CoreEntity implements InputFilterAwareInterface
     /**
      * Não é possível atribuir um inputFilter além do que está escrito na entidade
      *
-     * @param InputFilterInterface $inputFilter
+     * @param  InputFilterInterface $inputFilter
      * @return void
      */
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
         throw new EntityException("Not used");
+
         return $inputFilter;
     }
 
@@ -151,12 +152,11 @@ abstract class CoreEntity implements InputFilterAwareInterface
         return $this->inputFilter;
     }
 
-
     /**
      * Verifica se o campo está válido e faz o filtro
      *
-     * @param string $key
-     * @param mixed $value
+     * @param  string $key
+     * @param  mixed  $value
      * @return mixed
      */
     protected function valid($key, $value)
@@ -184,7 +184,6 @@ abstract class CoreEntity implements InputFilterAwareInterface
 
         return $filter->getValue($key);
     }
-    
 
     /**
      * Retorna os dados em forma de array. Usado pelo TableGateway
@@ -194,12 +193,13 @@ abstract class CoreEntity implements InputFilterAwareInterface
     public function toArray()
     {
         $data = $this->getData();
-        
+
         foreach ($data as $key => $value) {
             if ($value instanceof \DateTime) {
                 $data[$key] = $value->format('d/m/Y H:i:s');
             }
         }
+
         return $data;
     }
 

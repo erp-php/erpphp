@@ -3,7 +3,6 @@ namespace Core\Service;
 
 use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
 
 /**
  * Classe de Apoio para os serviços
@@ -11,16 +10,16 @@ use Zend\ServiceManager\Exception\ServiceNotFoundException;
  * @category Core
  * @package Service
  * @author  Daniel Chaves <daniel@danielchaves.com.br>
- * 
+ *
  */
- 
+
 abstract class CoreService implements ServiceManagerAwareInterface
 {
-	/**
+    /**
      * @var ServiceManager
      */
     protected $serviceManager;
-    
+
     protected $em;
 
     /**
@@ -42,17 +41,16 @@ abstract class CoreService implements ServiceManagerAwareInterface
         return $this->serviceManager;
     }
 
-   
     /**
      * Retrieve Service
-     * 
+     *
      * @return Service
      */
     protected function getService($service)
     {
         return $this->getServiceManager()->get($service);
     }
-    
+
     public function setEntityManager(EntityManager $em)
     {
         $this->em = $em;
@@ -67,7 +65,7 @@ abstract class CoreService implements ServiceManagerAwareInterface
         if ($this->em === null) {
             $this->em = $this->getService('Doctrine\ORM\EntityManager');
         }
-    
+
         return $this->em;
     }
 }

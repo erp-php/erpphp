@@ -5,8 +5,6 @@ use Zend\Http\Request;
 use Zend\Http\Response;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\RouteMatch;
-use Zend\View\Renderer\PhpRenderer;
-use Zend\View\Resolver;
 
 /**
  * Classe pai dos testes dos controllers
@@ -88,11 +86,10 @@ abstract class ControllerTest extends TestCase
         );
         //configura a rota para o evento de MVC corrente
         $this->event->setRouteMatch($this->routeMatch);
-        
+
         $this->controller->setEvent($this->event);
         $this->controller->setServiceLocator($this->serviceManager);
     }
-
 
     /**
      * Executado no final de cada teste

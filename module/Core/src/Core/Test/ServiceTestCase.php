@@ -3,7 +3,6 @@ namespace Core\Test;
 
 use Zend\ServiceManager\ServiceManager;
 use Zend\ServiceManager\ServiceManagerAwareInterface;
-use Zend\ServiceManager\Exception\ServiceNotFoundException;
 
 /**
  * Classe pai dos testes dos serviços
@@ -19,7 +18,7 @@ abstract class ServiceTestCase extends TestCase implements ServiceManagerAwareIn
     protected $serviceManager;
 
     /**
-     * Cache 
+     * Cache
      * @var Cache
      */
     protected $cache;

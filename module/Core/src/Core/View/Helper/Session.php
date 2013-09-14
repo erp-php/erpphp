@@ -8,7 +8,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Helper que inclui a sessão nas views
- * 
+ *
  * @category Core
  * @package View\Helper
  * @author  Daniel Chaves <daniel@danielchaves.com.br>
@@ -18,12 +18,13 @@ class Session extends AbstractHelper implements ServiceLocatorAwareInterface
     /**
      * Set the service locator.
      *
-     * @param ServiceLocatorInterface $serviceLocator
+     * @param  ServiceLocatorInterface $serviceLocator
      * @return CustomHelper
      */
     public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
     {
         $this->serviceLocator = $serviceLocator;
+
         return $this;
     }
     /**
@@ -39,6 +40,7 @@ class Session extends AbstractHelper implements ServiceLocatorAwareInterface
     {
         $helperPluginManager = $this->getServiceLocator();
         $serviceManager = $helperPluginManager->getServiceLocator();
+
         return $serviceManager->get('Session');
     }
 }
