@@ -113,16 +113,9 @@
 
  <target name="phpunit" description="Run unit tests with PHPUnit">
   <exec executable="phpunit" failonerror="true"/>
+    <arg value="-c" />
+    <arg value="${basedir}/module/Application/tests" />
  </target>
 
- <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
-  <exec executable="phpcb">
-   <arg value="--log" />
-   <arg path="${basedir}/build/logs" />
-   <arg value="--source" />
-   <arg path="${basedir}/module" />
-   <arg value="--output" />
-   <arg path="${basedir}/build/code-browser" />
-  </exec>
- </target>
+ 
 </project>
